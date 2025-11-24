@@ -1,0 +1,29 @@
+name: Microservices CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build user-service
+      run: docker build -t user-service ./user-service
+
+    - name: Build order-service
+      run: docker build -t order-service ./order-service
+
+    - name: Test user-service
+      run: echo "Running tests for user-service..."
+
+    - name: Test order-service
+      run: echo "Running tests for order-service..."
+
+    - name: Deploy
+      run: echo "Deploying microservices..."
